@@ -1,0 +1,542 @@
+<div class="container">
+  <div class="header">Candela Obscura</div>
+    <div class="sheet-3colrow">
+      <div class="sheet-col">
+        <label for="name">Name:</label>
+        <input type="text" name="attr_character_name" />
+
+        <label for="circle">Circle:</label>
+        <input type="text" id="circle" placeholder="Enter your circle">
+        </div>
+        <div class="sheet-col">
+            <label for="Pronouns">Pronouns:</label>
+        <input type="text" name="attr_pronouns" />
+
+        <label for="style">Style:</label>
+        <input type="text" id="style" placeholder="Style">
+        </div>
+        <div class="sheet-col">
+            <label for="Catalyst">Catalyst:</label>
+        <input type="catalyst" name="attr_catalyst" />
+
+        <label for="Question">Question:</label>
+        <input type="text" id="Question" placeholder="Question">
+        </div>
+    </div>
+    <p> </p>
+
+    <input type="hidden" class="sheet-tabstoggle" name="attr_sheetTab"  value="character"  />
+    <div>
+        <button type="action" name="act_character" >Character</button>
+        <button type="action" name="act_relationships" >Relationships</button>
+        <button type="action" name="act_journal" >Journal</button>
+        <button type="action" name="act_circle" >Circle Sheet</button>
+        <button type="action" name="act_compendium" >Compendium</button>
+    </div>
+
+    <div class="sheet-character">
+      <div class="sheet-3colrow">
+      <div class="sheet-col">
+        <h2>Skills</h2>
+        The gilded die is always the first die in the result.
+        If you spend drive on an untrained roll, ignore the last two dice.
+      
+       <div class="skill-category">
+        <h3>Nerve</h3>
+        <p>Drive:<input type="number" name="attr_nervedrive" step="any" value="0" min="0" max="9" />/
+        <input type="number" name="attr_nervedrivemax" step="any" value="0" min="0" max="9" /></p>
+        <p>Resistance:<input type="number" name="attr_nerveresistance" step="any" value="0" min="0" max="3" />/
+        <input type="number" name="attr_nerveresistancemax" value="floor(@{nervedrivemax}/3)" disabled="true" /></p>
+        
+        <div class="nerve-sub-category" onclick="rollDice('Move')">
+          <p><button type="roll" value="/roll {?{Drive|0}d6kh1+@{move}}kh1" name="roll_MoveCheck"></button> <b>Move</b> - <i>run, dodge, navigate</i></p>
+        <p><input type="checkbox" name="attr_MoveGilded" value="1" unchecked > Gilded <input type="radio" value="2d6kl1" name="attr_Move" checked>| <input type="radio" value="1d6k1" name="attr_Move" unchecked><input type="radio" value="2d6k1" name="attr_Move" unchecked><input type="radio" value="3d6k1" name="attr_Move" unchecked>
+        </p>
+        </div>
+    
+        <div class="nerve-sub-category" onclick="rollDice('Strike')">
+          <p><p><button type="roll" value="/roll {?{Drive|0}d6kh1+@{strike}}kh1" name="roll_StrikeCheck"></button> <b>Strike</b> - <i>punch, break, knock down</i></p>
+        <p><input type="checkbox" name="attr_StrikeGilded" value="1" unchecked > Gilded <input type="radio" value="2d6kl1" name="attr_Strike" checked>| <input type="radio" value="1d6k1" name="attr_Strike" unchecked><input type="radio" value="2d6k1" name="attr_Strike" unchecked><input type="radio" value="3d6k1" name="attr_Strike" unchecked>
+        </p>
+        </div>
+    
+        <div class="nerve-sub-category" onclick="rollDice('Control')">
+          <p><p><button type="roll" value="/roll {?{Drive|0}d6kh1+@{control}}kh1" name="roll_ControlCheck"></button> <b>Control</b> - <i>drive, shoot, finesse</i></p>
+        <p><input type="checkbox" name="attr_ControlGilded" value="1" unchecked > Gilded <input type="radio" value="2d6kl1" name="attr_Control" checked>|<input type="radio" value="1d6k1" name="attr_Control" unchecked><input type="radio" value="2d6k1" name="attr_Control" unchecked><input type="radio" value="3d6k1" name="attr_Control" unchecked>
+        </p>
+        </div>
+      </div>
+    
+      <div class="skill-category">
+        <h3>Cunning</h3>
+        <p>Drive:<input type="number" name="attr_Cunningdrive" step="any" value="0" min="0" max="9" />/
+        <input type="number" name="attr_Cunningdrivemax" step="any" value="0" min="0" max="9" /></p>
+        <p>Resistance:<input type="number" name="attr_cunningresistance" step="any" value="0" min="0" max="3" />/
+        <input type="number" name="attr_cunningresistance" value="floor(@{Cunningdrivemax}/3)" disabled="true" /></p>
+        
+        <div class="Cunning-sub-category" onclick="rollDice('sway')">
+          <p><p><button type="roll" value="/roll {?{Drive|0}d6kh1+@{sway}}kh1" name="roll_SwayCheck"></button> <b>Sway</b> - <i>convince, command, consort</i></p>
+        <p><input type="checkbox" name="attr_swayGilded" value="1" unchecked > Gilded <input type="radio" value="2d6kl1" name="attr_sway" checked>| <input type="radio" value="1d6k1" name="attr_sway" unchecked><input type="radio" value="2d6k1" name="attr_sway" unchecked><input type="radio" value="3d6k1" name="attr_sway" unchecked>
+        </p>
+        </div>
+    
+        <div class="Cunning-sub-category" onclick="rollDice('read')">
+          <p><p><button type="roll" value="/roll {?{Drive|0}d6kh1+@{read}}kh1" name="roll_ReadCheck"></button> <b>Read</b> - <i>interpret body language, spot lies, gather motive</i></p>
+        <p><input type="checkbox" name="attr_readGilded" value="1" unchecked > Gilded <input type="radio" value="2d6kl1" name="attr_read" checked>| <input type="radio" value="1d6k1" name="attr_read" unchecked><input type="radio" value="2d6k1" name="attr_read" unchecked><input type="radio" value="3d6k1" name="attr_read" unchecked>
+        </p>
+        </div>
+    
+        <div class="Cunning-sub-category" onclick="rollDice('hide')">
+          <p><p><button type="roll" value="/roll {?{Drive|0}d6kh1+@{hide}}kh1" name="roll_HideCheck"></button> <b>Hide</b> - <i>sneak, distract, sleight of hand</i></p>
+        <p><input type="checkbox" name="attr_hideGilded" value="1" unchecked > Gilded <input type="radio" value="2d6kl1" name="attr_hide" checked>|<input type="radio" value="1d6k1" name="attr_hide" unchecked><input type="radio" value="2d6k1" name="attr_hide" unchecked><input type="radio" value="3d6k1" name="attr_hide" unchecked>
+        </p>
+        </div>
+      </div>
+    
+      <div class="skill-category">
+        <h3>Intuition</h3>
+        <p>Drive:<input type="number" name="attr_Intuitiondrive" step="any" value="0" min="0" max="9" />/
+        <input type="number" name="attr_Intuitiondrivemax" step="any" value="0" min="0" max="9" /></p>
+        <p>Resistance:<input type="number" name="attr_intuitionresistance" step="any" value="0" min="0" max="3" />/
+        <input type="number" name="attr_intuitionresistancemax" value="floor(@{Intuitiondrivemax}/3)" disabled="true" /></p>
+        
+        <div class="Intuition-sub-category" onclick="rollDice('survey')">
+          <p><p><button type="roll" value="/roll {?{Drive|0}d6kh1+@{survey}}kh1" name="roll_SurveyCheck"></button> <b>Survey</b> - <i>search, track, spot</i></p>
+        <p><input type="checkbox" name="attr_surveyGilded" value="1" unchecked > Gilded <input type="radio" value="2d6kl1" name="attr_survey" checked>| <input type="radio" value="1d6k1" name="attr_survey" unchecked><input type="radio" value="2d6k1" name="attr_survey" unchecked><input type="radio" value="3d6k1" name="attr_survey" unchecked>
+        </p>
+        </div>
+    
+        <div class="Intuition-sub-category" onclick="rollDice('focus')">
+          <p><p><button type="roll" value="/roll {?{Drive|0}d6kh1+@{focus}}kh1" name="roll_FocusCheck"></button> <b>Focus</b> - <i>inspect, analyze, remember</i></p>
+        <p><input type="checkbox" name="attr_focusGilded" value="1" unchecked > Gilded <input type="radio" value="2d6kl1" name="attr_focus" checked>| <input type="radio" value="1d6k1" name="attr_focus" unchecked><input type="radio" value="2d6k1" name="attr_focus" unchecked><input type="radio" value="3d6k1" name="attr_focus" unchecked>
+        </p>
+        </div>
+    
+        <div class="Intuition-sub-category" onclick="rollDice('sense')">
+          <p><p><button type="roll" value="/roll {?{Drive|0}d6kh1+@{sense}}kh1" name="roll_SenseCheck"></button> <b>Sense</b> - <i>attune, channel, reveal</i></p>
+        <p><input type="checkbox" name="attr_senseGilded" value="1" unchecked > Gilded <input type="radio" value="2d6kl1" name="attr_sense" checked>|<input type="radio" value="1d6k1" name="attr_sense" unchecked><input type="radio" value="2d6k1" name="attr_sense" unchecked><input type="radio" value="3d6k1" name="attr_sense" unchecked>
+        </p>
+        </div>
+      </div>
+    </div>
+    
+
+    
+      <div class="sheet-col">
+        <h2>Role:</h2>
+        <p><input type="text" name="attr_role" placeholder="role" ></p>
+        <fieldset class="repeating_roleskills">
+            <p><input type="text" name="attr_roleskillname" />
+            <textarea name="attr_roleskill" rows="5" cols="33">I can...</textarea></p>
+        </fieldset>
+        <h2>Specialty:</h2>
+        <p><input type="text" name="attr_spec" placeholder="specialty" ></p>
+        <fieldset class="repeating_specskills">
+            <p><input type="text" name="attr_specskillname" />
+            <textarea name="attr_specskill" rows="5" cols="33">I can...</textarea></p>
+        </fieldset>
+        <p><h2>Illumination Keys</h2></p>
+        <input type="text" name="attr_key1" value="Key" > |<input type="text" name="attr_key2" value="Key" > |<input type="text" name="attr_key3" value="Key" > 
+      </div>
+    
+      <div class="sheet-col">
+        <h2>Marks</h2>
+        <p>Body:<input type="checkbox" name="attr_body1" value="1" unchecked ><input type="checkbox" name="attr_body2" value="1" unchecked ><input type="checkbox" name="attr_body3" value="1" unchecked ></p>
+        <p>Brain:<input type="checkbox" name="attr_brain1" value="1" unchecked ><input type="checkbox" name="attr_brain2" value="1" unchecked ><input type="checkbox" name="attr_brain3" value="1" unchecked ></p>
+        <p>Bleed:<input type="checkbox" name="attr_bleed1" value="1" unchecked ><input type="checkbox" name="attr_bleed2" value="1" unchecked ><input type="checkbox" name="attr_bleed3" value="1" unchecked ></p>
+        <h2>Scars</h2>
+        <p><input type="checkbox" name="attr_scar1" value="1" unchecked ><input type="text" name="attr_descscar1" /></p>
+        <p><input type="checkbox" name="attr_scar2" value="1" unchecked ><input type="text" name="attr_descscar2" /></p>
+        <p><input type="checkbox" name="attr_scar3" value="1" unchecked ><input type="text" name="attr_descscar3" /></p>
+        <h2>Gear</h2>
+        <p>During each assignment, choose up to three:</p>
+        <p><input type="checkbox" name="attr_item1" value="1" unchecked >Bleed Detector<input type="text" name="attr_descitem1" /></p>
+        <p><input type="checkbox" name="attr_item2" value="1" unchecked >Hand Weapon<input type="text" name="attr_descitem2" /></p>
+        <p><input type="checkbox" name="attr_item3" value="1" unchecked >Bleed Containment Vial<input type="text" name="attr_descitem3" /></p>
+        <p><input type="checkbox" name="attr_item4" value="1" unchecked ><input type="text" name="attr_descitem4" /></p>
+        <p><input type="checkbox" name="attr_item5" value="1" unchecked ><input type="text" name="attr_descitem5" /></p>
+        <p><input type="checkbox" name="attr_item6" value="1" unchecked ><input type="text" name="attr_descitem6" /></p>
+        <p><input type="checkbox" name="attr_item7" value="1" unchecked ><input type="text" name="attr_descitem7" /></p>
+      </div>
+</div>
+</div>
+      
+      
+      
+      
+    
+    
+    <div class="sheet-relationships">
+        <h2>Relationships</h2>
+        <p><input type="text" name="attr_npc1" value="Name" ><textarea id="npc1" name="npc1" rows="5" cols="33">...</textarea></p>
+        <p><input type="text" name="attr_npc2" value="Name" ><textarea id="npc2" name="npc2" rows="5" cols="33">...</textarea></p>
+        <p><input type="text" name="attr_npc3" value="Name" ><textarea id="npc3" name="npc3" rows="5" cols="33">...</textarea></p>
+        <p><input type="text" name="attr_npc4" value="Name" ><textarea id="npc4" name="npc4" rows="5" cols="33">...</textarea></p>
+        <p><input type="text" name="attr_npc5" value="Name" ><textarea id="npc5" name="npc5" rows="5" cols="33">...</textarea></p>
+        <p><input type="text" name="attr_npc6" value="Name" ><textarea id="npc6" name="npc6" rows="5" cols="33">...</textarea></p>
+        <p><input type="text" name="attr_npc7" value="Name" ><textarea id="npc7" name="npc7" rows="5" cols="33">...</textarea></p>
+        <p><input type="text" name="attr_npc8" value="Name" ><textarea id="npc8" name="npc8" rows="5" cols="33">...</textarea></p>
+        <p><input type="text" name="attr_npc9" value="Name" ><textarea id="npc9" name="npc9" rows="5" cols="33">...</textarea></p>
+        <p><input type="text" name="attr_npc10" value="Name" ><textarea id="npc10" name="npc10" rows="5" cols="33">...</textarea></p>
+    </div>
+    
+    <div class="sheet-journal">
+        <h2>Journal</h2>
+        <p><textarea id="journal1" name="journal1" rows="5" cols="33">Journal Entry</textarea></p>
+        <p><textarea id="journal2" name="journal2" rows="5" cols="33">Journal Entry</textarea></p>
+        <p><textarea id="journal3" name="journal3" rows="5" cols="33">Journal Entry</textarea></p>
+        <p><textarea id="journal4" name="journal4" rows="5" cols="33">Journal Entry</textarea></p>
+        <p><textarea id="journal5" name="journal5" rows="5" cols="33">Journal Entry</textarea></p>
+        <p><textarea id="journal6" name="journal6" rows="5" cols="33">Journal Entry</textarea></p>
+        
+    </div>
+    
+    
+    <div class="sheet-circle">
+        <h2>Circle Sheet</h2>
+        <p>The Circle of:<input type="text" name="attr_circlename" value="Name" ></p>
+        <p>Members:<textarea id="members" name="members" rows="5" cols="33">Member 1: Role; Member 2: Role;...</textarea></p>
+        <p>Chapter House:<textarea id="chapterhouse" name="chapterhouse" rows="5" cols="33">Location</textarea></p>
+        <h3>Illumination Questions & Keys</h3>
+        <p>Ask these at the end of every assignment. For every “yes,” fill in a point on the Illumination track.</p>
+         <p> - Did you contain or destroy a source of bleed? </p>
+         <p> - Did you provide comfort or support for those affected? </p>
+         <p> - Did you bring something of importance back for Candela Obscura to study? </p>
+         <p>Earn 2 Illumination if some, but not all, players fulfilled an Illumination Key during the session. Earn 4 if every player fulfilled at least one Illumination Key during the session. If nobody in the circle fulfilled any of their Keys, take no additional Illumination.</p>
+        <h3>Circle Abilities</h3>
+        <p><i>Choose one at character creation and one each time your circle advances.</i></p>
+        <p><input type="checkbox" name="attr_circleabil1" value="1" unchecked ><b>Stamina Training:</b> Your circle has three gilded dice at the beginning of every assignment that you may add to any roll. Once a die has been rolled, it is expended.</p>
+        <p><input type="checkbox" name="attr_circleabil2" value="1" unchecked ><b>Noboby Left Behind:</b>When a member of your circle takes a scar and drops incapacitated, any rolls a player makes in the scene to protect them or get them out of danger have +1d.</p>
+        <p><input type="checkbox" name="attr_circleabil3" value="1" unchecked ><b>Forged in Fire:</b>When you help an ally on a roll, if they don’t succeed, you both earn back 1 drive point of your choice.</p>
+        <p><input type="checkbox" name="attr_circleabil4" value="1" unchecked ><b>Interdisciplinary:</b>When choosing a new ability during character advancement, once per campaign, each player may choose an ability from a character role or specialty outside their own.</p>
+        <p><input type="checkbox" name="attr_circleabil5" value="1" unchecked ><b>Resource Management:</b>When your circle hits a milestone on the Illumination track, earn back one Stitch, Refresh, or Train resource.</p>
+        <p><input type="checkbox" name="attr_circleabil6" value="1" unchecked ><b>One Last Run:</b>When you select this ability, the next time you fill your Illumination track, your circle will retire from service. Everyone takes all four options during this character advancement.</p>
+        <h3>Illumination</h3>
+        <p>CIRCLE ADVANCEMENT</p>
+        <p>When the Illumination track is full, clear the track. Any leftover Illumination counts toward your next advancement cycle. Then choose a new circle ability, and all players can choose their character advancement options. Refresh your Candela Obscura Resources.</p>
+        <p><i>The seventh box in each row represent milestones, which may have mechanical benefits depending on what abilities your circle chooses.</i></p>
+        <p><input type="checkbox" name="attr_ill1" value="1" unchecked >
+        <input type="checkbox" name="attr_ill2" value="1" unchecked >
+        <input type="checkbox" name="attr_ill3" value="1" unchecked >
+        <input type="checkbox" name="attr_ill4" value="1" unchecked >
+        <input type="checkbox" name="attr_ill5" value="1" unchecked >
+        <input type="checkbox" name="attr_ill6" value="1" unchecked > |
+        <input type="checkbox" name="attr_ill7" value="1" unchecked ></p>
+        <p><input type="checkbox" name="attr_ill8" value="1" unchecked >
+        <input type="checkbox" name="attr_ill9" value="1" unchecked >
+        <input type="checkbox" name="attr_ill10" value="1" unchecked >
+        <input type="checkbox" name="attr_ill11" value="1" unchecked >
+        <input type="checkbox" name="attr_ill12" value="1" unchecked >
+        <input type="checkbox" name="attr_ill13" value="1" unchecked > |
+        <input type="checkbox" name="attr_ill14" value="1" unchecked ></p>
+        <p><input type="checkbox" name="attr_ill15" value="1" unchecked >
+        <input type="checkbox" name="attr_ill16" value="1" unchecked >
+        <input type="checkbox" name="attr_ill17" value="1" unchecked >
+        <input type="checkbox" name="attr_ill18" value="1" unchecked >
+        <input type="checkbox" name="attr_ill19" value="1" unchecked >
+        <input type="checkbox" name="attr_ill20" value="1" unchecked > |
+        <input type="checkbox" name="attr_ill21" value="1" unchecked ></p>
+        <p><input type="checkbox" name="attr_ill22" value="1" unchecked >
+        <input type="checkbox" name="attr_ill23" value="1" unchecked >
+        <input type="checkbox" name="attr_ill24" value="1" unchecked ></p>
+        <h3>Character Advancement</h3>
+        <p><b>At character advancement, each player can choose two different options:</b></p> 
+        <p>Add 1 action point | Add 2 drive points | Take a new ability (role or specialty) | Gild an additional action</p>
+        <h3>Candela Obscura Resources</h3>
+        <p>In each of the following resources, fill in both sections (top and bottom) equal to the number of your circle members plus one. Between assignments, each player may spend up to two resources of their choosing. When resources are used, only erase the top section.</p>
+        <p>Stitch: <input type="number" name="attr_stitch" step="any" value="0" min="0" max="9" />/<input type="number" name="attr_stitch_max" step="any" value="0" min="0" max="9" /></p>
+        <p>Refresh: <input type="number" name="attr_refresh" step="any" value="0" min="0" max="9" />/<input type="number" name="attr_refresh_max" step="any" value="0" min="0" max="9" /></p>
+        <p>Train: <input type="number" name="attr_train" step="any" value="0" min="0" max="9" />/<input type="number" name="attr_train_max" step="any" value="0" min="0" max="9" /></p>
+        <h3>Circle Gear</h3>
+        <p><fieldset class="repeating_circlegear">
+            <p><input type="text" name="attr_circlegearname" />
+            <textarea name="attr_circlegear" rows="5" cols="33">...</textarea></p>
+        </fieldset></p>
+    </div>
+    
+    <div class="sheet-compendium">
+        <h3>Illumination Keys</h3>
+        <p><b>Journalist (Face): </b> Gather Statements, Hunt Down a Lead, Speak Truth to Power</p>
+        <p><b>Magician (Face): </b> Perform a Trick, Spot a Ruse, Seel Out Real Magick</p>
+        <p><b>Explorer (Muscle): </b>Study an Artifact, Discuss History, Run into Danger</p>
+        <p><b>Soldier (Muscle): </b> Use Violence of Action, Protect Someone, Act Tactically</p>
+        <p><b>Doctor (Scholar): </b> Avoid a Fight, Aid an Ally, Comfort Someone</p>
+        <p><b>Professor (Scholar): </b> Mentor an Ally, Reference Research, Make a Plan</p>
+        <p><b>Criminal (Slink): </b> Do Something Illegal, Make a Deal, Stand Up to Authority</p>
+        <p><b>Detective (Slink): </b> Probe a Witness, Track a Target, Reveal a Clue</p>
+        <p><b>Medium (Weird): </b> Connect with Someone, Sense Phenomena, Make a Scene</p>
+        <p><b>Occultist (Weird): </b> Consult Arcane Texts, Collect Oddities, Act Bizarre</p>
+        <h3>Specialist Gear</h3>
+        <p><b>Journalist (Face): </b> Press Credentials, Camera, Surveillance Equipment</p>
+        <p><b>Magician (Face): </b> Magic Show Gimmick, Flash Powder & Smoke Bomb, Hidden Weapon</p>
+        <p><b>Explorer (Muscle): </b>Excavation Tools, Survival Gear, Research Materials</p>
+        <p><b>Soldier (Muscle): </b> Heavy Weapon, Explosives, Body Armor <i>(Soak 1 Body)</i></p>
+        <p><b>Doctor (Scholar): </b> Medical Equipment, Relevant Textbook, Doctors Credentials</p>
+        <p><b>Professor (Scholar): </b> Research Materials, Laboratory Equipment, Small Mundane Invention</p>
+        <p><b>Criminal (Slink): </b> Forged Documents, Burglary Equipment, Body Armor <i>(Soak 1 Body)</i></p>
+        <p><b>Detective (Slink): </b> Camera, Investigation Equipment, Forged Documents</p>
+        <p><b>Medium (Weird): </b> Strange Weapon, Divination Tools, Occult Text</p>
+        <p><b>Occultist (Weird): </b> Arcane Text, Ward <i>(Soak 1 Bleed)</i>, Occult Supplies</p>
+        <h3>Action Ratings</h3>
+        <p><b>Journalist (Face): </b> Read 1, Survey 2, Focus 1, Sense 1</p>
+        <p><b>Magician (Face): </b> Sway 2, Read 1, Hide 1, Focus 1</p>
+        <p><b>Explorer (Muscle): </b>Move 1, Strike 2, Survey 1, Focus 1</p>
+        <p><b>Soldier (Muscle): </b> Move 2, Strike 2, Control 1</p>
+        <p><b>Doctor (Scholar): </b> Control 1, Read 1, Survey 1, Focus 2</p>
+        <p><b>Professor (Scholar): </b> Sway 1, Survey 2, Focus 2</p>
+        <p><b>Criminal (Slink): </b> Control 1, Hide 2, Survey 1, Focus 1</p>
+        <p><b>Detective (Slink): </b> Control 1, Hide 1, Survey 2, Focus 1</p>
+        <p><b>Medium (Weird): </b> Read 2, Survey 1, Sense 2</p>
+        <p><b>Occultist (Weird): </b> Control 1, Read 1, Focus 1, Sense 2</p>
+        <h3>Drives & Gilded Actions</h3>
+        <p><b>Journalist (Face): </b> Cunning 3, Gilded Survey</p>
+        <p><b>Magician (Face): </b> Cunning 1, Intuition 2, Gilded Sway</p>
+        <p><b>Explorer (Muscle): </b> Nerve 3, Gilded Move</p>
+        <p><b>Soldier (Muscle): </b> Nerve 2, Intuition 2, Gilded Strike</p>
+        <p><b>Doctor (Scholar): </b> Intuition 3, Gilded Read</p>
+        <p><b>Professor (Scholar): </b> Cunning 2, Intuition 1, Gilded Focus</p>
+        <p><b>Criminal (Slink): </b> Nerve 1, Cunning 2, Gilded Hide</p>
+        <p><b>Detective (Slink): </b> Nerve 2, Cunning 1, Gilded Control</p>
+        <p><b>Medium (Weird): </b> Cunning 2, Intuition 2, Gilded Sense</p>
+        <p><b>Occultist (Weird): </b> Intuition 3, Gilded Focus</p>
+        <h3>Abilities</h3>
+        <p><b>Face:</b></p>
+        <p>I know a Guy: Once per assignment, ask th GM who you know nearby that could help you. The GM will tell you who they are, and explain why this NPC might have insight into the investigation.</p>
+        <p>Sweet Talk: You know how to work the room. After you make small talk with someone, you may add +1d on any Read rolls you make in which they are the target. If your current Cunning resistance is 2 or higher, the die is gilded.</p>
+        <p>Cool under Pressure: On any high-stakes woll, you may always spend Cunning instead of the drive the action falls under.</p>
+        <p><b>Muscle:</b></p>
+        <p>Behind me: Spend 1 Nerve to choose an ally in the same scene who is about to take a mark from a phenomenon, then describe what you do that allows you to take the mark instead.</p>
+        <p>Adrenaline Rush: For each mark you take, you may immediately refresh a drive point of your choice.</p>
+        <p>Endurance: When you take anough marks to become incapacitated, instead, roll a number of d6 equal to your current Nerve resistance. On a 6, you aren't incapacitated and you don't take a scar.</p>
+        <p><b>Scholar:</b></p>
+        <p>Well-Read: You're highly educated and retain knowledge better than most. When you spend Intuition while making a roll, on a result of 3 or less, earn back any of the Intuition you spent.</p>
+        <p>Occult Researcher: Take 1 Brain mark to askt he GM for an important occult detail that you would recognize from your studies, but has not yet been revealed in the scene. If there are non, clear the Brain mark.</p>
+        <p>Meticulous Notes: If your current Cunning resistance is 2 or more, add +1d to all Focus rolls. After an assignment, increase your Illumination track 1 additional point because of the detailed notes your character returns with.</p>
+        <p><b>Slink:</b></p>
+        <p>Scout: If oyu have time to observe a location, you can spend 1 Intuition to ask a question: <i>What do I notice here that others do not see? What in this place might be of use to us? What path should we follow?</i></p>
+        <p>Saw this Coming: Three times per assignment, you may add +1d to a circle member's roll without spending drive by saying how you prepared for this kind of situation together.</p>
+        <p>Death Defy: Ince per assignment, when you should take 1 or more marks from an enemy, you instead escape unscathed. Describe how your wuick thinking keeps you safe from harm.</p>
+        <p><b>Weird:</b></p>
+        <p>Great Wards: You can inscribe and maintain a warding symbol on one person at a time. Describe the material they must hold to bind it (salt, sand, etc.). They take +1d on Move rolls against phenomena.</p>
+        <p>Let Them in: Whenever you take 1 or more Bleed marks, you also gain additional information about the phenomenon that harmed you. Ask the GM one question about the source of the bleed.</p>
+        <p>Ritual: When you have a few minutes to prepare, you may take a Bleed mark to perform a ritual on yourself or an ally: <i>Circle of Protection (soaks 1 Body mark for the person within), Reinvigorate (refresh 1 resistance), or Remote Viewing (one moment).</i></p>
+        <p><b>Journalist:</b></p>
+        <p>Insider Access: Your line of work offers you special privileges. Once per assignment, automatically gain access to an important person or place by using the Press Credentials gear.</p>
+        <p>Open Book: You can get people to open up to you very quickly.When you attempt to connect with others by sharing something deeply personal, add a number of dice equal to your current Cunningresistance to a Sway roll. On a success, they will reciprocate.</p>
+        <p>Lie Detector: When you make a Read roll in an attempt to figureout whether a person is telling the truth, gild an additional die. The first Cunning you spend on the roll is worth +2d instead of +1d.</p>
+        <p>Press Conference: You can spend 1 Cunning to gather a large groupof people together to make announcements, ask questions, or stage a distraction. All Cunning rolls you make at this assembly take +1d.</p>
+        <p>In the Trenches: You’ve done enough dangerous journalism workto know how to keep yourself safe. Once per assignment, you mayburn 1 Cunning resistance to soak a Body mark.</p>
+        <p>Well-Researched: You can spend 1 Intuition to ask the GM aspecific question about a place, group, or concept that you may haveresearched before the assignment. They will tell you what you know from that preparation.</p>
+        <p><b>Magician:</b></p>
+        <p>Misdirection: When you use your words or actions to distract a target
+from what is actually happening, make a Hide roll. The first Cunning
+you or an ally spends on this roll is worth +2d instead of +1d.</p>
+        <p>Escape Artist: Spend 1 Nerve to automatically escape ropes, cuffs,
+manacles, or a creature that has grappled you.</p>
+        <p>Practiced Patter: You’ve long rehearsed for a moment like this.
+When making a Sway or Hide roll, you may spend Intuition instead
+of Cunning.</p>
+        <p>Uncanny Eye: You may spend 1 Intuition to ask the GM a question:
+How can I leverage something here to my advantage? What here doesn’t work
+the way it appears? What is out of place here?</p>
+        <p>Flourish: You know how to cover your mistakes with flair. On a roll
+where you could spend Cunning, if you fail or get a mixed success, you
+may spend 2 Cunning to push the result up one tier—from a miss to
+mixed success or mixed success to full success.</p>
+        <p>The Prestige: Your magic is usually all smoke and mirrors, but you
+have one trick you’ve learned that’s real. Roll Sense when you perform
+it, and on a success, take a Bleed mark. Circle one option when you
+take this ability: change appearance, levitate, summon mundane object,
+teleport a short distance, or throw your voice.</p>
+        <p><b>Explorer:</b></p>
+        <p>Obscure Lexicon: When you encounter an ancient or esoteric
+language, you can spend 1 Intuition to understand what it says.</p>
+        <p>Field Experience: You’ve traveled the world and been in many
+dangerous positions before. Once per assignment, describe to the
+group how a previous adventure is similar to your current situation
+and refresh 1 Nerve for everyone in your circle.</p>
+        <p>Mind Over Matter: When you are told to use a specific action
+on a roll, you may take a Brain mark to utilize an alternative action
+instead. You may also spend the drive that corresponds with your
+chosen action. Describe how you adapt to your situation.</p>
+        <p>Tenacious: When you have 1 or more Bleed marks, gild an
+additional die on Move, Strike, and Control rolls while in danger.</p>
+        <p>Narrow Escape: You’ve been in numerous hairy situations during
+your fearless exploits. Add +1d to your Move roll when you attempt
+to escape a trap or ambush.</p>
+        <p>Not Again: Once per assignment, you may take a scar to have an
+automatic full success on an action. If you do, it’s as if you’ve had
+this scar all along—tell your circle how you got it, and why the
+lesson you learned is helping you succeed here. Don’t adjust your
+action ratings when you take this scar.</p>
+        <p><b>Soldier:</b></p>
+        <p>Basic Training: You have tactical experience in high-pressure
+situations. When you make a Survey roll in a dangerous place, also add
+a number of dice equal to your current Nerve resistance.</p>
+        <p>Geared Up: You and one ally in your circle may mark an additional
+gear slot during each assignment.</p>
+        <p>Sharpshooter: When you want to make a ranged attack with a
+weapon, you may spend 1 Nerve to steady your aim before shooting,
+and add +2d to your next shot at this target.</p>
+        <p>Tactician: When you are in a dangerous scenario, you may spend 1
+Nerve to ask the GM a question: How do I get to safety? What poses the
+largest immediate threat to my circle? Where is the target going to move next?</p>
+        <p>Compartmentalization: You have trained to detach yourself from
+the horrors of violence. Once per assignment, you may burn 1 Nerve
+resistance to soak a Brain mark.</p>
+        <p>Volunteer Duty: Between assignments, instead of spending
+resources, you can offer a helping hand to your Lightkeeper. Describe
+how you aid the organization, and refill 1 point in any Candela
+Obscura resource on your circle sheet. You may not spend any
+resources during this downtime.</p>
+        <p><b>Doctor:</b></p>
+        <p>Patch Up: When you have a few moments of calm, you can make
+a Focus roll to heal 1 Body mark on an ally. On a 4–5, spend 2
+Intuition to accomplish this. On a 6, spend 1 Intuition. On a 3 or
+less, you may take a Brain mark to take the 4–5 result instead.</p>
+        <p>Non-Combatant: Your pain spurs others to action. If you haven’t
+hurt anyone yet during this assignment, when you take a mark, each of
+your allies in the scene can recover 1 drive point of their choice.</p>
+        <p>Dissection: When you make a Focus roll to dissect a piece of
+organic matter affected by bleed, gild an additional die. You cannot
+take Bleed marks from this inspection.</p>
+        <p>Resuscitation: When a nearby ally takes a scar, you can make a
+Focus roll in an attempt to immediately revive them. On a 6, it
+works. Though they still receive the scar, they’re back on their feet.
+On a 4–5, it will cost 3 drive points of your choosing. This cannot be
+used when a PC takes their fourth scar.</p>
+        <p>Lifesaver: Between assignments, you can spend 1 Stitch to work on
+healing an ally’s scar. When you do, make a Focus roll. On a critical
+success, fill three. On a 6, fill two. On a 4–5, fill one. When the track
+is full (six points), the scar is healed and 1 action point may be shifted.</p>
+        <p>Anatomical Strike: You know where the body is most vulnerable.
+When attacking an enemy, you may roll Focus instead of Strike.</p>
+        <p><b>Professor:</b></p>
+        <p>Steel Mind: Once per assignment, when you should take a Brain
+mark, you may instead burn 1 Intuition resistance to soak it.</p>
+        <p>University Resources: Your university has alumni all over the world.
+Once per session, describe a person you know from your tenure as a
+professor, and ask the GM where they can be found locally.</p>
+        <p>Learn from My Mistakes: Any time you get a result of 3 or less on
+a roll, describe what lesson you learned from your failure, and refresh
+1 drive point of your choice.</p>
+        <p>Better Part of Valor: When making a Control or Move roll to flee
+danger, gild a die. On this roll, the first Nerve you spend is worth
++2d instead of +1d.</p>
+        <p>Verbose: When you make a speech or hold a conversation to assist
+an ally, the die you give them is gilded.</p>
+        <p>Chemical Concoction: You know how to mix chemicals together
+to achieve particular effects. When you take Laboratory Equipment
+as gear, you may spend a few minutes concocting a mixture that is:
+acidic, explosive, flammable, loud, sleep-inducing, sticky, or toxic.</p>
+        <p><b>Criminal:</b></p>
+        <p>Street Smarts: You know how to keep an eye on your surroundings.
+Whenever you make a Survey roll, you may spend any drive instead
+of only Intuition.</p>
+        <p>Leverage: On a successful Read roll, you may ask the GM what your
+target truly wants. On any Sway rolls you make using this information,
+also add a number of dice equal to your current Cunning resistance.</p>
+        <p>Hardened: When you take a scar, you may choose not to shift any
+action points as a result.</p>
+        <p>Born in the Shadows: When attempting to avoid security or
+detection, gild an additional Hide die.</p>
+        <p>Tricks of the Trade: You’ve learned how to navigate tricky or
+dangerous situations to keep yourself out of harm’s way. On any
+Hide or Sway roll you make, you may spend 1 Nerve to lower the
+stakes before rolling. If this is already a low-stakes roll, you may not
+use this ability.</p>
+        <p>Sticky Fingers: After a successful melee attack, you can spend
+1 Cunning to pilfer an item from your target undetected. This could be
+their wallet, a weapon they’re carrying, an important document, etc.</p>
+        <p><b>Detective:</b></p>
+        <p>Mind Palace: When you want to figure out how two clues might
+relate or what path they should point you towards, burn 1 Intuition
+resistance. The GM will give you the information you’ve deduced.</p>
+        <p>Interrogation: When you are questioning someone about
+information they are resistant to revealing, add a number of dice equal
+to your current Cunning resistance to your Read roll.</p>
+        <p>Back Against the Wall: When you are making a high-stakes roll,
+you may take a Brain mark to make any Nerve you spend worth +2d
+instead of +1d.</p>
+        <p>Inspection: You have experience examining crime scenes. When
+you make a Survey roll to gather evidence about what might have
+happened in this location, gild an additional die on the roll.</p>
+        <p>Stakeout: You are good at collecting information while remaining
+undetected. When you are tailing a suspect or conducting
+surveillance, you may use Survey instead of Hide.</p>
+        <p>One Step Ahead: Once per assignment, you can produce a useful
+mundane object you’ve had with you all along. When you do, fill in
+the empty gear slot and write the object in this space. This does not
+count toward your gear limit.</p>
+        <p><b>Medium:</b></p>
+        <p>Miasma: You can spend 1 Intuition to tell if and how a person or
+object has been affected by bleed.</p>
+        <p>Bending Spoons: You can make a Sense roll to control an object in
+the room with your mind: flip a switch, knock something over, move a small
+object, put out a light, etc. On a mixed success, you may take a Bleed mark
+to make it a full success instead.</p>
+        <p>Cold Read: On a successful Sense roll, you know what ailment,
+stress, or loss a person has in their life, even if they’re hiding it.</p>
+        <p>Premonitions: You have visions of the future. When an ally is about
+to take 1 or more marks, burn an Intuition resistance to warn them
+about the coming danger. Then, soak one of these marks.</p>
+        <p>Last Moments: While touching a corpse, you can burn an Intuition
+resistance to hear, smell, and feel that creature’s last few moments of
+life. By taking a Bleed mark, you can push yourself to see a still image
+of the last thing they saw before death.</p>
+        <p>Commune: You can make a connection with a nearby sentient
+phenomenon in order to communicate with it. Take a Brain
+mark and make a Sense roll to open an empathetic or telepathic
+connection to ask a question. On a success, you get an answer. On a
+4–5 result, the phenomenon will ask a question in return.</p>
+        <p><b>Occultist:</b></p>
+        <p>Ghostblade: You can attune a ritual knife to yourself. If you coat it
+in your blood (take a Body mark), it is particularly effective against
+magickal beings and can strike invisible or ethereal enemies.</p>
+        <p>Blood of the Covenant: The first time a dangerous phenomenon
+inflicts a mark on anyone in your circle, you refresh a number of
+points, in any drive, equal to your current Intuition resistance.</p>
+        <p>Speak Their Language: You can speak the supernatural language of
+any phenomenon you encounter. Describe what strange or terrifying
+way you communicate with each other.</p>
+        <p>Play the Bait: You know how to draw the attention of a
+phenomenon—you just have to play the bait. Make a Sense roll to
+bring a nearby phenomenon toward you.</p>
+        <p>Extend Your Senses: When you make a Sense roll to understand
+more about a phenomenon you’ve encountered, also add a number
+of dice equal to your current Intuition resistance to the roll.</p>
+        <p>Forbidden Ritual: You know a highly complex and extremely
+dangerous ritual that will achieve a desired outcome. When you use
+this ritual, immediately take a Bleed scar. Determine what the ritual
+is and what its effects are: change the environment, conjure a phenomenon,
+or save a dying person.</p>
+        
+        
+        <h3>Creating a character</h3>
+        <p>Choose a role and a specialty. Fill in the 5 points in action rating determined by role and specialty. </p>
+        <p>Then, Choose one action with a 0 rating and raise it to 1.</p>
+        <p>Finally, distribute 3 points howecer you'd like. You may not raise any action ration above 2 during character creation.</p>
+        <p>Determine your Drives, 3 points given already by role and specialty.</p>
+        <p>Next, distribute 6 additional points in however you'd like. You may not start with any of your drives above 6 during character creation.</p>
+        <p>Determine Resistances: For every block of 3 drive points (based on maximum), you also take a resistance in that drive.</p>
+        <p>Gild Actions: One action gilded by specialty. Then gild an additional action of your choice. </p>
+        <p>Choose Abilities: Choose one ability from your role and one from your specialty.</p>
+        <p> Answer these prompts: Catalyst (Why did you join Candela Obscura?), Question (What is your character persuing?), Style (overall feel and aesthetic?), Name and Pronouns</p>
+        <p>Form your relationship with each investigator.</p>
+        
+        
+    </div>
+
+</div>
+
+
+<script type="text/worker">
+    const buttonlist = ["character","relationships","journal", "circle", "compendium"];
+    buttonlist.forEach(button => {
+        on(`clicked:${button}`, function() {
+            setAttrs({
+                sheetTab: button
+            });
+        });
+    });
+</script>
