@@ -1,0 +1,63 @@
+/*Configure the tab buttons*/
+.charsheet .sheet-character,
+.charsheet .sheet-relationships,
+.charsheet .sheet-journal,
+.charsheet .sheet-circle,
+.charsheet .sheet-compendium {
+    display: none;
+}
+
+/* show the selected tab */
+.charsheet .sheet-tabstoggle[value="character"] ~ div.sheet-character,
+.charsheet .sheet-tabstoggle[value="relationships"] ~ div.sheet-relationships,
+.charsheet .sheet-tabstoggle[value="journal"] ~ div.sheet-journal,
+.charsheet .sheet-tabstoggle[value="circle"] ~ div.sheet-circle,
+.charsheet .sheet-tabstoggle[value="compendium"] ~ div.sheet-compendium {
+    display: block;
+}
+
+.charsheet .sheet-col{
+  background: none;
+}
+
+  body {
+    font-family: Arial, sans-serif;
+  }
+
+  .container {
+    max-width: 1000px;
+    margin: 20px auto;
+  }
+
+  .header {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+
+  .tab-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+
+  .tab {
+    flex: 1;
+    padding: 10px;
+    background-color: #eee;
+    text-align: center;
+    cursor: pointer;
+  }
+
+  .tab:hover {
+    background-color: #ddd;
+  }
+
+  .tab-content {
+    border: 1px solid #ddd;
+    padding: 20px;
+  }
+.sheet-element-to-determine-style[value='1'] ~ .sheet-element-to-style {
+  background-color: red;
+}
