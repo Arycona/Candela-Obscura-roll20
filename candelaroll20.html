@@ -24,16 +24,20 @@
         </div>
     </div>
     <p> </p>
+    <div class="delimiter"></div>
 
-    <input type="hidden" class="sheet-tabstoggle" name="attr_sheetTab"  value="character"  />
-    <div>
-        <button type="action" name="act_character" >Character</button>
-        <button type="action" name="act_relationships" >Relationships</button>
-        <button type="action" name="act_journal" >Journal</button>
-        <button type="action" name="act_circle" >Circle Sheet</button>
-        <button type="action" name="act_compendium" >Compendium</button>
-    </div>
+        <input type="hidden" class="sheet-tabstoggle" name="attr_sheetTab"  value="character" />
+        <div>
+            <button type="action" name="act_character" class="tab-button">Character</button>
+            <button type="action" name="act_relationships" class="tab-button">Relationships</button>
+            <button type="action" name="act_journal" class="tab-button">Journal</button>
+            <button type="action" name="act_circle" class="tab-button">Circle Sheet</button>
+            <button type="action" name="act_compendium" class="tab-button">Compendium</button>
+        </div>
 
+
+    <div class="delimiter"></div>
+    
     <div class="sheet-character">
       <div class="sheet-3colrow">
       <div class="sheet-col">
@@ -43,79 +47,152 @@
       
        <div class="skill-category">
         <h3>Nerve</h3>
-        <p>Drive:<input type="number" name="attr_nervedrive" step="any" value="0" min="0" max="9" />/
-        <input type="number" name="attr_nervedrivemax" step="any" value="0" min="0" max="9" /></p>
-        <p>Resistance:<input type="number" name="attr_nerveresistance" step="any" value="0" min="0" max="3" />/
-        <input type="number" name="attr_nerveresistancemax" value="floor(@{nervedrivemax}/3)" disabled="true" /></p>
+
+          <div class="drive-fields">
+            <label for="nerveDrive">Drive:</label>
+            <input type="number" name="attr_nervedrive" step="any" value="0" min="0" max="9" />/
+            <input type="number" name="attr_nervedrivemax" step="any" value="0" min="0" max="9" />
+          </div>
         
+          <div class="resistance-fields">
+            <label for="nerveResistance">Resistance:</label>
+            <input type="number" name="attr_nerveresistance" step="any" value="0" min="0" max="3" />/
+            <input type="number" name="attr_nerveresistancemax" value="floor(@{nervedrivemax}/3)" disabled="true" />
+          </div>
+          <div class="delimiter"></div>
+          
         <div class="nerve-sub-category" onclick="rollDice('Move')">
-          <p><button type="roll" value="/roll {?{Drive|0}d6kh1+@{move}}kh1" name="roll_MoveCheck"></button> <b>Move</b> - <i>run, dodge, navigate</i></p>
-        <p><input type="checkbox" name="attr_MoveGilded" value="1" unchecked > Gilded <input type="radio" value="2d6kl1" name="attr_Move" checked>| <input type="radio" value="1d6k1" name="attr_Move" unchecked><input type="radio" value="2d6k1" name="attr_Move" unchecked><input type="radio" value="3d6k1" name="attr_Move" unchecked>
-        </p>
+          <p><p><button type="roll" value="/roll {?{Drive|0}d6kh1+@{move}}kh1" name="roll_MoveCheck"></button> <b>Move</b> - <i>run, dodge, navigate</i></p>
+        
+        <div class="sheet-toggle-container">
+          <input type="hidden" class="sheet-toggle" name="attr_move_flag" />
+          <button type="action" name="act_move" class="sheet-toggle">
+            <span class="sheet-checked">✓</span>
+          </button>
+          <input type="radio" value="2d6kl1" name="attr_Move" checked>| <input type="radio" value="1d6k1" name="attr_Move" unchecked><input type="radio" value="2d6k1" name="attr_Move" unchecked><input type="radio" value="3d6k1" name="attr_Move" unchecked>
         </div>
-    
+        </div>
+        <div class="delimiter"></div>
+        
         <div class="nerve-sub-category" onclick="rollDice('Strike')">
           <p><p><button type="roll" value="/roll {?{Drive|0}d6kh1+@{strike}}kh1" name="roll_StrikeCheck"></button> <b>Strike</b> - <i>punch, break, knock down</i></p>
-        <p><input type="checkbox" name="attr_StrikeGilded" value="1" unchecked > Gilded <input type="radio" value="2d6kl1" name="attr_Strike" checked>| <input type="radio" value="1d6k1" name="attr_Strike" unchecked><input type="radio" value="2d6k1" name="attr_Strike" unchecked><input type="radio" value="3d6k1" name="attr_Strike" unchecked>
-        </p>
+         <div class="sheet-toggle-container">
+          <input type="hidden" class="sheet-toggle" name="attr_strike_flag" />
+          <button type="action" name="act_strike" class="sheet-toggle">
+            <span class="sheet-checked">✓</span>
+          </button><input type="radio" value="2d6kl1" name="attr_Strike" checked>| <input type="radio" value="1d6k1" name="attr_Strike" unchecked><input type="radio" value="2d6k1" name="attr_Strike" unchecked><input type="radio" value="3d6k1" name="attr_Strike" unchecked>
         </div>
-    
+        </div>
+        <div class="delimiter"></div>
+        
         <div class="nerve-sub-category" onclick="rollDice('Control')">
           <p><p><button type="roll" value="/roll {?{Drive|0}d6kh1+@{control}}kh1" name="roll_ControlCheck"></button> <b>Control</b> - <i>drive, shoot, finesse</i></p>
-        <p><input type="checkbox" name="attr_ControlGilded" value="1" unchecked > Gilded <input type="radio" value="2d6kl1" name="attr_Control" checked>|<input type="radio" value="1d6k1" name="attr_Control" unchecked><input type="radio" value="2d6k1" name="attr_Control" unchecked><input type="radio" value="3d6k1" name="attr_Control" unchecked>
-        </p>
+         <div class="sheet-toggle-container">
+          <input type="hidden" class="sheet-toggle" name="attr_control_flag" />
+          <button type="action" name="act_control" class="sheet-toggle">
+            <span class="sheet-checked">✓</span>
+          </button> 
+          <input type="radio" value="2d6kl1" name="attr_Control" checked>|<input type="radio" value="1d6k1" name="attr_Control" unchecked><input type="radio" value="2d6k1" name="attr_Control" unchecked><input type="radio" value="3d6k1" name="attr_Control" unchecked>
         </div>
+      </div>
       </div>
     
       <div class="skill-category">
         <h3>Cunning</h3>
-        <p>Drive:<input type="number" name="attr_Cunningdrive" step="any" value="0" min="0" max="9" />/
-        <input type="number" name="attr_Cunningdrivemax" step="any" value="0" min="0" max="9" /></p>
-        <p>Resistance:<input type="number" name="attr_cunningresistance" step="any" value="0" min="0" max="3" />/
-        <input type="number" name="attr_cunningresistance" value="floor(@{Cunningdrivemax}/3)" disabled="true" /></p>
+          <div class="drive-fields">
+            <label for="cunningDrive">Drive:</label>
+            <input type="number" name="attr_cunningdrive" step="any" value="0" min="0" max="9" />/
+            <input type="number" name="attr_cunningdrivemax" step="any" value="0" min="0" max="9" />
+          </div>
+        
+          <div class="resistance-fields">
+            <label for="cunningResistance">Resistance:</label>
+            <input type="number" name="attr_cunningresistance" step="any" value="0" min="0" max="3" />/
+            <input type="number" name="attr_cunningresistancemax" value="floor(@{cunningdrivemax}/3)" disabled="true" />
+          </div>
+        <div class="delimiter"></div>
         
         <div class="Cunning-sub-category" onclick="rollDice('sway')">
           <p><p><button type="roll" value="/roll {?{Drive|0}d6kh1+@{sway}}kh1" name="roll_SwayCheck"></button> <b>Sway</b> - <i>convince, command, consort</i></p>
-        <p><input type="checkbox" name="attr_swayGilded" value="1" unchecked > Gilded <input type="radio" value="2d6kl1" name="attr_sway" checked>| <input type="radio" value="1d6k1" name="attr_sway" unchecked><input type="radio" value="2d6k1" name="attr_sway" unchecked><input type="radio" value="3d6k1" name="attr_sway" unchecked>
-        </p>
+         <div class="sheet-toggle-container">
+          <input type="hidden" class="sheet-toggle" name="attr_sway_flag" />
+          <button type="action" name="act_sway" class="sheet-toggle">
+            <span class="sheet-checked">✓</span>
+          </button>
+          <input type="radio" value="2d6kl1" name="attr_sway" checked>| <input type="radio" value="1d6k1" name="attr_sway" unchecked><input type="radio" value="2d6k1" name="attr_sway" unchecked><input type="radio" value="3d6k1" name="attr_sway" unchecked>
         </div>
-    
+        </div>
+        <div class="delimiter"></div>
+        
         <div class="Cunning-sub-category" onclick="rollDice('read')">
           <p><p><button type="roll" value="/roll {?{Drive|0}d6kh1+@{read}}kh1" name="roll_ReadCheck"></button> <b>Read</b> - <i>interpret body language, spot lies, gather motive</i></p>
-        <p><input type="checkbox" name="attr_readGilded" value="1" unchecked > Gilded <input type="radio" value="2d6kl1" name="attr_read" checked>| <input type="radio" value="1d6k1" name="attr_read" unchecked><input type="radio" value="2d6k1" name="attr_read" unchecked><input type="radio" value="3d6k1" name="attr_read" unchecked>
-        </p>
+        
+        <div class="sheet-toggle-container">
+          <input type="hidden" class="sheet-toggle" name="attr_read_flag" />
+          <button type="action" name="act_read" class="sheet-toggle">
+            <span class="sheet-checked">✓</span>
+          </button><input type="radio" value="2d6kl1" name="attr_read" checked>| <input type="radio" value="1d6k1" name="attr_read" unchecked><input type="radio" value="2d6k1" name="attr_read" unchecked><input type="radio" value="3d6k1" name="attr_read" unchecked>
         </div>
-    
+        </div>
+        <div class="delimiter"></div>
+        
         <div class="Cunning-sub-category" onclick="rollDice('hide')">
           <p><p><button type="roll" value="/roll {?{Drive|0}d6kh1+@{hide}}kh1" name="roll_HideCheck"></button> <b>Hide</b> - <i>sneak, distract, sleight of hand</i></p>
-        <p><input type="checkbox" name="attr_hideGilded" value="1" unchecked > Gilded <input type="radio" value="2d6kl1" name="attr_hide" checked>|<input type="radio" value="1d6k1" name="attr_hide" unchecked><input type="radio" value="2d6k1" name="attr_hide" unchecked><input type="radio" value="3d6k1" name="attr_hide" unchecked>
-        </p>
+         <div class="sheet-toggle-container">
+          <input type="hidden" class="sheet-toggle" name="attr_hide_flag" />
+          <button type="action" name="act_hide" class="sheet-toggle">
+            <span class="sheet-checked">✓</span>
+          </button>
+          <input type="radio" value="2d6kl1" name="attr_hide" checked>|<input type="radio" value="1d6k1" name="attr_hide" unchecked><input type="radio" value="2d6k1" name="attr_hide" unchecked><input type="radio" value="3d6k1" name="attr_hide" unchecked>
+        </div>
         </div>
       </div>
     
       <div class="skill-category">
         <h3>Intuition</h3>
-        <p>Drive:<input type="number" name="attr_Intuitiondrive" step="any" value="0" min="0" max="9" />/
-        <input type="number" name="attr_Intuitiondrivemax" step="any" value="0" min="0" max="9" /></p>
-        <p>Resistance:<input type="number" name="attr_intuitionresistance" step="any" value="0" min="0" max="3" />/
-        <input type="number" name="attr_intuitionresistancemax" value="floor(@{Intuitiondrivemax}/3)" disabled="true" /></p>
+          <div class="drive-fields">
+            <label for="intuitionDrive">Drive:</label>
+            <input type="number" name="attr_intuitiondrive" step="any" value="0" min="0" max="9" />/
+            <input type="number" name="attr_intuitiondrivemax" step="any" value="0" min="0" max="9" />
+          </div>
+        
+          <div class="resistance-fields">
+            <label for="intuitionResistance">Resistance:</label>
+            <input type="number" name="attr_intuitionresistance" step="any" value="0" min="0" max="3" />/
+            <input type="number" name="attr_intuitionresistancemax" value="floor(@{intuitiondrivemax}/3)" disabled="true" />
+          </div>
+        <div class="delimiter"></div>
         
         <div class="Intuition-sub-category" onclick="rollDice('survey')">
           <p><p><button type="roll" value="/roll {?{Drive|0}d6kh1+@{survey}}kh1" name="roll_SurveyCheck"></button> <b>Survey</b> - <i>search, track, spot</i></p>
-        <p><input type="checkbox" name="attr_surveyGilded" value="1" unchecked > Gilded <input type="radio" value="2d6kl1" name="attr_survey" checked>| <input type="radio" value="1d6k1" name="attr_survey" unchecked><input type="radio" value="2d6k1" name="attr_survey" unchecked><input type="radio" value="3d6k1" name="attr_survey" unchecked>
-        </p>
+        <div class="sheet-toggle-container">
+          <input type="hidden" class="sheet-toggle" name="attr_survey_flag" />
+          <button type="action" name="act_survey" class="sheet-toggle">
+            <span class="sheet-checked">✓</span>
+          </button> <input type="radio" value="2d6kl1" name="attr_survey" checked>| <input type="radio" value="1d6k1" name="attr_survey" unchecked><input type="radio" value="2d6k1" name="attr_survey" unchecked><input type="radio" value="3d6k1" name="attr_survey" unchecked>
         </div>
-    
+        </div>
+        <div class="delimiter"></div>
+        
         <div class="Intuition-sub-category" onclick="rollDice('focus')">
           <p><p><button type="roll" value="/roll {?{Drive|0}d6kh1+@{focus}}kh1" name="roll_FocusCheck"></button> <b>Focus</b> - <i>inspect, analyze, remember</i></p>
-        <p><input type="checkbox" name="attr_focusGilded" value="1" unchecked > Gilded <input type="radio" value="2d6kl1" name="attr_focus" checked>| <input type="radio" value="1d6k1" name="attr_focus" unchecked><input type="radio" value="2d6k1" name="attr_focus" unchecked><input type="radio" value="3d6k1" name="attr_focus" unchecked>
-        </p>
+        <div class="sheet-toggle-container">
+          <input type="hidden" class="sheet-toggle" name="attr_focus_flag" />
+          <button type="action" name="act_focus" class="sheet-toggle">
+            <span class="sheet-checked">✓</span>
+          </button> <input type="radio" value="2d6kl1" name="attr_focus" checked>| <input type="radio" value="1d6k1" name="attr_focus" unchecked><input type="radio" value="2d6k1" name="attr_focus" unchecked><input type="radio" value="3d6k1" name="attr_focus" unchecked>
         </div>
+        </div>
+        <div class="delimiter"></div>
     
         <div class="Intuition-sub-category" onclick="rollDice('sense')">
           <p><p><button type="roll" value="/roll {?{Drive|0}d6kh1+@{sense}}kh1" name="roll_SenseCheck"></button> <b>Sense</b> - <i>attune, channel, reveal</i></p>
-        <p><input type="checkbox" name="attr_senseGilded" value="1" unchecked > Gilded <input type="radio" value="2d6kl1" name="attr_sense" checked>|<input type="radio" value="1d6k1" name="attr_sense" unchecked><input type="radio" value="2d6k1" name="attr_sense" unchecked><input type="radio" value="3d6k1" name="attr_sense" unchecked>
-        </p>
+        <div class="sheet-toggle-container">
+          <input type="hidden" class="sheet-toggle" name="attr_sense_flag" />
+          <button type="action" name="act_sense" class="sheet-toggle">
+            <span class="sheet-checked">✓</span>
+          </button> <input type="radio" value="2d6kl1" name="attr_sense" checked>|<input type="radio" value="1d6k1" name="attr_sense" unchecked><input type="radio" value="2d6k1" name="attr_sense" unchecked><input type="radio" value="3d6k1" name="attr_sense" unchecked>
+        </div>
         </div>
       </div>
     </div>
@@ -136,7 +213,19 @@
             <textarea name="attr_specskill" rows="5" cols="33">I can...</textarea></p>
         </fieldset>
         <p><h2>Illumination Keys</h2></p>
-        <input type="text" name="attr_key1" value="Key" > |<input type="text" name="attr_key2" value="Key" > |<input type="text" name="attr_key3" value="Key" > 
+        <div class="autoExpand">
+            <input type="text" name="attr_key1">
+            <span name="attr_key1"></span>
+        </div>
+          <div class="autoExpand">
+            <input type="text" name="attr_key2">
+            <span name="attr_key2"></span>
+        </div>
+          <div class="autoExpand">
+            <input type="text" name="attr_key3">
+            <span name="attr_key3"></span>
+        </div>
+       
       </div>
     
       <div class="sheet-col">
@@ -220,21 +309,21 @@
         <input type="checkbox" name="attr_ill3" value="1" unchecked >
         <input type="checkbox" name="attr_ill4" value="1" unchecked >
         <input type="checkbox" name="attr_ill5" value="1" unchecked >
-        <input type="checkbox" name="attr_ill6" value="1" unchecked > |
+        <input type="checkbox" name="attr_ill6" value="1" unchecked > <span style="font-family: 'Pictos Custom'">r</span>
         <input type="checkbox" name="attr_ill7" value="1" unchecked ></p>
         <p><input type="checkbox" name="attr_ill8" value="1" unchecked >
         <input type="checkbox" name="attr_ill9" value="1" unchecked >
         <input type="checkbox" name="attr_ill10" value="1" unchecked >
         <input type="checkbox" name="attr_ill11" value="1" unchecked >
         <input type="checkbox" name="attr_ill12" value="1" unchecked >
-        <input type="checkbox" name="attr_ill13" value="1" unchecked > |
+        <input type="checkbox" name="attr_ill13" value="1" unchecked > <span style="font-family: 'Pictos Custom'">r</span>
         <input type="checkbox" name="attr_ill14" value="1" unchecked ></p>
         <p><input type="checkbox" name="attr_ill15" value="1" unchecked >
         <input type="checkbox" name="attr_ill16" value="1" unchecked >
         <input type="checkbox" name="attr_ill17" value="1" unchecked >
         <input type="checkbox" name="attr_ill18" value="1" unchecked >
         <input type="checkbox" name="attr_ill19" value="1" unchecked >
-        <input type="checkbox" name="attr_ill20" value="1" unchecked > |
+        <input type="checkbox" name="attr_ill20" value="1" unchecked > <span style="font-family: 'Pictos Custom'">r</span>
         <input type="checkbox" name="attr_ill21" value="1" unchecked ></p>
         <p><input type="checkbox" name="attr_ill22" value="1" unchecked >
         <input type="checkbox" name="attr_ill23" value="1" unchecked >
@@ -515,7 +604,7 @@ or save a dying person.</p>
         <h3>Creating a character</h3>
         <p>Choose a role and a specialty. Fill in the 5 points in action rating determined by role and specialty. </p>
         <p>Then, Choose one action with a 0 rating and raise it to 1.</p>
-        <p>Finally, distribute 3 points howecer you'd like. You may not raise any action ration above 2 during character creation.</p>
+        <p>Finally, distribute 3 points however you'd like. You may not raise any action rating above 2 during character creation.</p>
         <p>Determine your Drives, 3 points given already by role and specialty.</p>
         <p>Next, distribute 6 additional points in however you'd like. You may not start with any of your drives above 6 during character creation.</p>
         <p>Determine Resistances: For every block of 3 drive points (based on maximum), you also take a resistance in that drive.</p>
@@ -529,14 +618,43 @@ or save a dying person.</p>
 
 </div>
 
-
 <script type="text/worker">
     const buttonlist = ["character","relationships","journal", "circle", "compendium"];
     buttonlist.forEach(button => {
         on(`clicked:${button}`, function() {
+
             setAttrs({
                 sheetTab: button
             });
         });
     });
 </script>
+
+<script type="text/worker">
+  const strengthValues = ["1","2","3","4","5"];
+  strengthValues.forEach(function(value) {
+    on(`clicked:strength_${value}`, function() {
+      setAttrs({
+        "strength": value
+      });
+    });
+  });
+</script>
+
+<script type="text/worker">
+  // Register the click handler to all specified buttons.
+  const toggleList = ["move", "strike", "control", "sway", "read", "hide", "survey", "focus", "sense"];
+  toggleList.forEach(function(button) {
+    on(`clicked:${button}`, function() {
+      const flag = `${button}_flag`;
+      // Check the current value of the hidden flag.
+      getAttrs([flag], function(v) {
+        // Update the value of the hidden flag to "1" for checked or "0" for unchecked.
+        setAttrs({
+          [flag]: v[flag] !== "1" ? "1" : "0"
+        });
+      });
+    });
+  });
+</script>
+
