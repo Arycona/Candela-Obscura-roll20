@@ -1,3 +1,38 @@
+.container {
+  background-image: url('');
+  background-size: cover; /* Adjust as needed */
+  background-position: center; /* Adjust as needed */
+  /* You can add more background properties as needed */
+}
+
+
+
+/* Configure the tab buttons */
+.charsheet .tab-button {
+    background-color: #1E5845; /* Green background color */
+    color: white; /* White text color */
+    padding: 10px 15px; /* Padding around text */
+    border: none; /* Remove border */
+    border-radius: 5px; /* Add rounded corners */
+    margin: 5px; /* Add some spacing between buttons */
+    cursor: pointer;
+    transition: background-color 0.3s; /* Add transition effect for background color */
+}
+
+/* Change button color on hover */
+.charsheet .tab-button:hover,
+.charsheet .tab-button.selected {
+    background-color: #576D5F; /* Darker green on hover */
+}
+
+/* Show the selected tab */
+.charsheet .sheet-tabstoggle[value="character"] ~ div.sheet-character,
+.charsheet .sheet-tabstoggle[value="relationships"] ~ div.sheet-relationships,
+.charsheet .sheet-tabstoggle[value="journal"] ~ div.sheet-journal,
+.charsheet .sheet-tabstoggle[value="circle"] ~ div.sheet-circle,
+.charsheet .sheet-tabstoggle[value="compendium"] ~ div.sheet-compendium {
+    display: block;
+}
 /*Configure the tab buttons*/
 .charsheet .sheet-character,
 .charsheet .sheet-relationships,
@@ -7,14 +42,6 @@
     display: none;
 }
 
-/* show the selected tab */
-.charsheet .sheet-tabstoggle[value="character"] ~ div.sheet-character,
-.charsheet .sheet-tabstoggle[value="relationships"] ~ div.sheet-relationships,
-.charsheet .sheet-tabstoggle[value="journal"] ~ div.sheet-journal,
-.charsheet .sheet-tabstoggle[value="circle"] ~ div.sheet-circle,
-.charsheet .sheet-tabstoggle[value="compendium"] ~ div.sheet-compendium {
-    display: block;
-}
 
 .charsheet .sheet-col{
   background: none;
@@ -58,6 +85,121 @@
     border: 1px solid #ddd;
     padding: 20px;
   }
-.sheet-element-to-determine-style[value='1'] ~ .sheet-element-to-style {
-  background-color: red;
+.charsheet textarea.textbox {
+    resize: none;
+    box-sizing: border-box;
+    height: 231px;
+}
+.autoExpand {
+    overflow: hidden; /* hides overflow that is caused by the span */
+    position: relative; /* Allows the input's absolute positioning to be relative to this parent div */
+    min-width: 50px; /* Whatever feels good to you, prevents a new span from collapsing to 0. */
+    width: fit-content; /* Will fit the width to the contents without going outside itself or collapsing smaller than its content, though we will be using min-width in the case where there's no content. */
+    height: 30px; /* Prevent the span from defining the height of the input container which can't be multiline */
+}
+.autoExpand span {
+    visibility: hidden;
+    font-size: 1em;
+    padding: 0 8px; /* Matching my input's padding so that the widths are correct */
+}
+.autoExpand input {
+    position: absolute; /* removes the input from the DOM flow, allowing the span to exist in the same space */
+    width: 100%; /* Inputs match the width of the parent element as defined by the spans */
+    font-size: 1em;
+}
+.charsheet .sheet-dots{
+  display:flex;
+}
+/* Configure the button styling. This example makes it look like a radio. */
+.charsheet button.sheet-dot {
+  padding: 0;
+  border: solid 1px #a8a8a8;
+  cursor: pointer;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.charsheet button.sheet-dot > span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: buttontext;
+}
+
+/* Hide the "checked" section of the radio if the hidden attribute value is greater than the button value */
+.charsheet input.sheet-dot[value="1"] ~ button.sheet-gt-1 > span.sheet-checked {
+  display: none;
+}
+.charsheet input.sheet-dot[value="2"] ~ button.sheet-gt-2 > span.sheet-checked {
+  display: none;
+}
+.charsheet input.sheet-dot[value="3"] ~ button.sheet-gt-3 > span.sheet-checked {
+  display: none;
+}
+.charsheet input.sheet-dot[value="4"] ~ button.sheet-gt-4 > span.sheet-checked {
+  display: none;
+}
+
+.skill-category {
+  border: 2px solid #333; /* Border color */
+  padding: 10px; /* Padding inside the box */
+  display: flex;
+  flex-direction: column; /* Stack child elements vertically */
+  margin: 10px 0; /* Margin around the box */
+}
+
+
+/* Style for the checkbox and radio buttons */
+input[type="checkbox"],
+input[type="radio"] {
+  margin-right: 5px; /* Add some spacing between the checkbox/radio button and the label */
+}
+.drive-fields,
+.resistance-fields {
+  display: flex;
+  align-items: center; /* Align items vertically in the center */
+  margin-bottom: 5px; /* Adjust the spacing between the sets of fields */
+}
+
+.drive-fields label,
+.resistance-fields label {
+  margin-right: 10px; /* Adjust the spacing between the label and the input fields */
+}
+.delimiter {
+  height: 1px;
+  background: linear-gradient(to right, rgba(255, 255, 255, 0), #333, rgba(255, 255, 255, 0));
+  margin: 2px 0;
+}
+
+
+/* Configure a container for the toggle */
+.charsheet .sheet-toggle-container {
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Configure the button styling. This example makes it look like a checkbox. */
+.charsheet button.sheet-toggle {
+  padding: 0;
+  border: solid 2px #FFC700;
+  cursor: pointer;
+  margin: 5px;
+
+  width: 16px;
+  height: 16px;
+  border-radius: 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 12px;
+}
+
+/* Hide the "checked" section of the toggle if the attribute value is not "1". */
+.charsheet input.sheet-toggle:not([value="1"]) ~ button.sheet-toggle > span.sheet-checked {
+  display: none;
 }
